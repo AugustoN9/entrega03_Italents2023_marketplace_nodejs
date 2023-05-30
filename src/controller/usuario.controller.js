@@ -3,7 +3,12 @@ const Usuario = require("../model/usuario")
 const find = async (request, response) => {
     try {
         const id = request.params.id;
-        return response.status(200).send(await Usuario.findById(id));
+        const usuarioEncontrado = Usuario.findById(id);
+        //return response.status(200).send(await Usuario.findById(id));
+
+        console.log("===> Usuario ENCONTRADO! <===");
+        return response.status(200).send(await usuarioEncontrado);
+
     }
     catch (err) {
         return response.status(400).send(await { message: "Não foi possivel localizar este id" });
@@ -33,6 +38,7 @@ const createUsuario = async (request, response) => {
 
 
     return response.status(201).send(Usuario.create(usuario));
+    console.log("Usuario CADASTRADO COM SUCESSO!");
 }
 
 const updateUsuario = async (request, response) => {
@@ -53,12 +59,12 @@ const updateUsuario = async (request, response) => {
         else if (!usuario.cpf) {
             return response.status(400).send({ message: "O campo 'cpf' não foi encontrado!" });
         }
-
+        console.log("### => ATUALIZADO COM SUCESSO! <= ###");
         return response.status(200).send(await Usuario.findByIdAndUpdate(id, usuario, { returnDocument: "After" }));
-        console.log("Usuario ATUALIZADO COM SUCESSO!");
+
     }
     catch (err) {
-        return response.status(404).send({ message: "Usuario não foi encontrado!" });
+        return response.status(404).send({ message: "Usuario NÃO FOI ENCONTRADO!" });
     }
 
 }
@@ -66,7 +72,7 @@ const updateUsuario = async (request, response) => {
 const deleteUsuario = async (request, response) => {
     try {
         const id = request.params.id;
-        console.log("Usuario EXCLUIDO do Sistema!");
+        console.log("*** => Usuario EXCLUIDO do Sistema! <= ***");
         return response.status(200).send(await Usuario.findByIdAndRemove(id));
     }
     catch (err) {
