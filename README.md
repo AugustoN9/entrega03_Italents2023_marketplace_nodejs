@@ -1,7 +1,7 @@
 # entrega03_Italents2023_marketplace_nodejs
 Projeto Back-end Development Node.js + MongoDB Market-place-nodejs
 
-# Criar uma app REST API com CRUD + Node.js + MongoDB + EJS
+# Criar uma app REST API com CRUD + Node.js + MongoDB
 
 ## _The Last Markdown Editor, Ever_
 
